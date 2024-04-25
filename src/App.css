@@ -1,0 +1,62 @@
+body {
+  font-family: "Jura";
+  color: #362552;
+  background-color: #FDFEF8;
+}
+
+.layout-header {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  align-items: center;
+  justify-content: space-around;
+  gap: 30px;
+  margin-bottom: 10px;
+  background-color: #FDFEF8;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  padding: 10px 0px;
+}
+
+.layout-body {
+  background-image: url("./assets/background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  height: 100vh;
+
+}
+
+#create-new-post {
+  margin-right: 20px;
+}
+
+#search-bar {
+  width: 50em;
+  height: 40px;
+  background-color: #C7C7C7;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+#app-logo {
+  filter: drop-shadow(rgba(0, 0, 0, 0.767) 0px 4px 4px);
+}
+
+::placeholder {
+  font-family: "Imprima";
+}
+
+@font-face {
+  font-family: "Jura";  
+  src: local("Jura"),
+    url("./fonts/Jura-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Imprima";  
+  src: local("Imprima"),
+    url("./fonts/Imprima-Regular.ttf") format("truetype");
+}
