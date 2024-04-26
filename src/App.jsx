@@ -2,21 +2,28 @@ import './App.css'
 import './fonts/Jura-VariableFont_wght.ttf'
 import './fonts/Imprima-Regular.ttf'
 import PostItem from './components/postItem'
+import { createClient } from "@supabase/supabase-js";
+import { useEffect } from 'react';
+import { useState } from 'react';
+const API_KEY  = import.meta.env.VITE_API_KEY;
 
-const data = [
-  {
-    name: 'my first post',
-    song: 'Flower dance - Dj okawari',
-    description: 'I love this song, it made me remember all this stuffy from ...',
-    image: null
-  }
-]
+const supabase = createClient("https://xkmfpppjcuiwswqckkbp.supabase.co", API_KEY)
 
 const App = () => {
+  const [posts, setPosts] = useState([]);
+  
+  useEffect(() => {
+    const getData = async () => {
+      const data = await supabase.from("posts").select();
+      setPosts(data.data)
+    }
+    getData();
+  }, [])
+
   return (
     <>
     <div className='post-items'>
-      {data.map((entry, index) => {
+      {posts && posts.map((post, index) => {
         return <div key={index}>
           <PostItem />
         </div>
