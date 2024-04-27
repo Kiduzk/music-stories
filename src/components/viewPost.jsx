@@ -83,7 +83,7 @@ const ViewPost = () => {
             setComments(data.data[0].comments !== null ? data.data[0].comments : [])
         }
         getData();
-    }, [comments])
+    }, [])
 
 
     return <>

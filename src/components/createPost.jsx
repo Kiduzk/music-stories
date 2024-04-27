@@ -43,7 +43,7 @@ const CreatePost = () => {
             <input onChange={handleTitle} type="text" name="post-title" id="post-title" placeholder="Post title" required/>
             <input onChange={handleMusic} type="text" name="music-title" id="post-title" placeholder="Music name" required/>
             <textarea onChange={handleDesc} placeholder="Description" required></textarea> 
-            <button class="submit-button" onClick={handleSubmit}>Submit Post</button>
+            <button className="submit-button" onClick={handleSubmit}>Submit Post</button>
         </div>
     </>
 }
