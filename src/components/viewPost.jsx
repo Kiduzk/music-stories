@@ -15,6 +15,7 @@ const ViewPost = () => {
     const [title, setTitle] = useState("")
     const [music, setMusic] = useState("")
     const [desc, setDesc] = useState("")
+    const [likes, setLikes] = useState(0);
     
     const handleTitle = (e) => {
         setTitle(e.target.value)
@@ -47,6 +48,10 @@ const ViewPost = () => {
         console.log("Deleted item, with response", response);
         navigate("/")
     }
+     const handleLike = async () => {
+        setLikes((prev) => prev + 1);
+        const reponse = await supabase.from("posts").update({"likes": likes}).eq("id", id);
+     }
 
     useEffect(() => {
         const getData = async () => {
@@ -55,6 +60,7 @@ const ViewPost = () => {
             setTitle(data.data[0].title);
             setMusic(data.data[0].music);
             setDesc(data.data[0].description);
+            setLikes(data.data[0].likes)
         }
         getData();
     }, [])
@@ -69,6 +75,7 @@ const ViewPost = () => {
             <div className="view-buttons">
                 <button className="submit-button" onClick={handleUpdate}>Update Post</button>
                 <button className="submit-button" onClick={handleDelete}>Delete Post</button>
+                <button className="submit-button" onClick={handleLike}>Like</button>
             </div>
         </div>
         }
