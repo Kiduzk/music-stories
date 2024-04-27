@@ -74,7 +74,7 @@ textarea {
   filter: drop-shadow(rgba(0, 0, 0, 0.767) 0px 4px 4px);
 }
 
-#submit-button {
+.submit-button {
   width: 150px;
   height: 40px;
   border-radius: 10px;
@@ -83,7 +83,7 @@ textarea {
   border: #362552 solid;
 }
 
-#submit-button:hover {
+.submit-button:hover {
   background-color: #C7C7C7;
 }
 
@@ -108,6 +108,12 @@ textarea {
 
 .post-item:hover {
   background-color: #FDFEF8;
+}
+
+.view-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 @font-face {
