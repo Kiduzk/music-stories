@@ -29,7 +29,7 @@ const App = () => {
   }
 
   const sortByVotes = () => {
-    posts.sort((a, b) => a.likes - b.likes);
+    posts.sort((a, b) => b.likes - a.likes);
     setPosts([...posts]);
   }
 
