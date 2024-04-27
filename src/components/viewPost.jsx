@@ -16,6 +16,8 @@ const ViewPost = () => {
     const [music, setMusic] = useState("")
     const [desc, setDesc] = useState("")
     const [likes, setLikes] = useState(0);
+    const [comment, setComment] = useState("");
+    const [comments, setComments] = useState([]);
     
     const handleTitle = (e) => {
         setTitle(e.target.value)
@@ -25,6 +27,23 @@ const ViewPost = () => {
     }
     const handleDesc = (e) => {
         setDesc(e.target.value)
+    }
+    const handleComment = (e) => {
+        setComment(e.target.value)
+    }
+    const submitComment =  async () => {
+        if (!comment) {
+            alert("Comment can not be empty");
+            return 
+        }
+        const response = await supabase.from("posts").update(
+            {
+                "comments": [...comments, comment] 
+            }
+        ).eq("id", id)
+        
+        setComments([...comments, comment]);
+        setComment("");
     }
     const handleUpdate = async () => {
         if (!title || !music || !desc) {
@@ -48,11 +67,10 @@ const ViewPost = () => {
         console.log("Deleted item, with response", response);
         navigate("/")
     }
-     const handleLike = async () => {
+    const handleLike = async () => {
         setLikes((prev) => prev + 1);
         const reponse = await supabase.from("posts").update({"likes": likes}).eq("id", id);
-     }
-
+    }
     useEffect(() => {
         const getData = async () => {
             const data = await supabase.from("posts").select().eq("id", id);
@@ -61,13 +79,15 @@ const ViewPost = () => {
             setMusic(data.data[0].music);
             setDesc(data.data[0].description);
             setLikes(data.data[0].likes)
+            setComments(data.data[0].comments !== null ? data.data[0].comments : [])
         }
         getData();
-    }, [])
+    }, [comments])
 
 
     return <>
-        {post &&  <div id="create-post-body">
+        {post &&  
+        <div id="create-post-body">
             <input onChange={handleTitle} value={title} type="text" name="post-title" id="post-title" placeholder="Post title" required/>
             <input onChange={handleMusic} value={music} type="text" name="music-title" id="post-title" placeholder="Music name" required/>
             <textarea onChange={handleDesc} value={desc} placeholder="Description" required></textarea>
@@ -77,8 +97,21 @@ const ViewPost = () => {
                 <button className="submit-button" onClick={handleDelete}>Delete Post</button>
                 <button className="submit-button" onClick={handleLike}>Like</button>
             </div>
+
+            <textarea value={comment} name="comment" id="comment" placeholder="Leave a comment..." onChange={handleComment}></textarea>
+            <button className="submit-button" onClick={submitComment}>Comment</button>
         </div>
         }
+        <div className="comment-container">
+        <h2>Comments</h2> 
+        {
+            comments && comments.map((entry, index) => {
+            return <div className="comment-entry" key={index}>
+                {entry}
+            </div>
+           })
+        }
+        </div>
     </>
 }
 
