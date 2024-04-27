@@ -22,9 +22,23 @@ const App = () => {
     getData();
   }, [])
 
+  const sortByDates = () => {
+     posts.sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at));
+     setPosts([...posts]) 
+
+  }
+
+  const sortByVotes = () => {
+    posts.sort((a, b) => a.likes - b.likes);
+    setPosts([...posts]);
+  }
+
   return (
     <>
     <div className='post-items'>
+      <button className='sort-button' onClick={sortByVotes}>Sort by votes</button>
+      <button className='sort-button' onClick={sortByDates}>Sort by date</button>
+
       {posts && posts
       .filter((post) => post.title.includes(search))
       .map((post, index) => {

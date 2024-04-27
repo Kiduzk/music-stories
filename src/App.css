@@ -134,6 +134,21 @@ textarea {
   border-top-right-radius: 10px;
 }
 
+.sort-button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: none;
+  font-family: "Imprima";
+  padding: 5px 8px;
+  border-radius: 3px;
+  background-color: #C7C7C7;
+  color: #362552;
+}
+
+.sort-button:hover {
+  background-color: #FDFEF8;
+}
+
 .comment-entry {
   font-size: 20px;
   background-color: 100px;
