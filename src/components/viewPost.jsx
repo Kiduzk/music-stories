@@ -68,8 +68,9 @@ const ViewPost = () => {
         navigate("/")
     }
     const handleLike = async () => {
-        setLikes((prev) => prev + 1);
-        const reponse = await supabase.from("posts").update({"likes": likes}).eq("id", id);
+        const response = await supabase.from("posts").update({"likes": likes + 1}).eq("id", id);
+        setLikes(likes + 1);
+        console.log("Updated likes", response)
     }
     useEffect(() => {
         const getData = async () => {
