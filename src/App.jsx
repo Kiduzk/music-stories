@@ -25,7 +25,7 @@ const App = () => {
     <div className='post-items'>
       {posts && posts.map((post, index) => {
         return <div key={index}>
-          <PostItem />
+          <PostItem hoursAgo={post.created_at} title={post.title} likes={post.likes} />
         </div>
       })}
     </div>
