@@ -21,3 +21,19 @@ GIF created with LICEcap
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
 [peek](https://github.com/phw/peek) for Linux. -->
+
+## How to run
+
+With the appropriate .env file, this project setup can be set up as follows:
+
+```
+git clone https://github.com/Kiduzk/codepath_web102_final.git
+cd codepath_web102_final
+npm i
+npm run dev
+```
+
+## Future improvements
+- User authentication
+- Have builtin directory of music/artists that users can search
+- Deployment
